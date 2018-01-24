@@ -4,6 +4,7 @@ const data = require('../supporting/data')
 module.exports = {
     beforeEach : browser => {
         browser.url('http://localhost:3000')
+        functions.buttonClicker(browser, 'AC')
     },
     after : browser => {
         browser.end()
@@ -25,6 +26,11 @@ module.exports = {
             .expect.element(selectors['result']).text.to.equal(data['2+2=4'].result_2)
             // functions.buttonClicker(browser, data.addtest.button[0]
         // here we are using array
+        functions.buttonClicker(browser, '2')
+        functions.buttonClicker(browser, '+')
+        functions.buttonClicker(browser, '2')
+        functions.buttonClicker(browser, '=')
+        browser.expect.element(selectors['result']).text.to.equal('4')
     },
     '32.1*2=64.2' : browser => {
         functions.buttonClicker(browser, '3')
